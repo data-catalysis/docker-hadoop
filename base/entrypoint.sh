@@ -3,6 +3,18 @@
 # Set some sensible defaults
 export CORE_CONF_fs_defaultFS=${CORE_CONF_fs_defaultFS:-hdfs://`hostname -f`:8020}
 
+export HADOOP_CLASSPATH=`${HADOOP_PREFIX}/bin/hadoop classpath`
+# Extra Java CLASSPATH elements. Automatically insert capacity-scheduler.
+for f in $HADOOP_PREFIX/contrib/capacity-scheduler/*.jar; do
+if [ "$HADOOP_CLASSPATH" ]; then
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$f
+  else
+export HADOOP_CLASSPATH=$f
+  fi
+done
+
+export CLASSPATH=${HADOOP_CLASSPATH}:$CLASSPATH
+
 function addProperty() {
   local path=$1
   local name=$2
