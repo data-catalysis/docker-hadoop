@@ -16,5 +16,5 @@ SPARK_APACHE_PATH="spark/spark-${SPARK_VERSION}/${SPARK_TARFILE}"
 mkdir -p base/sw
 mkdir -p resourcemanager/sw
 wget -nc ${APACHE_MIRROR}${HADOOP_APACHE_PATH} -O base/sw/${HADOOP_TARFILE}
-# wget -nc ${APACHE_MIRROR}${SPARK_APACHE_PATH} -O resourcemanager/sw/${SPARK_TARFILE}
+wget -nc ${APACHE_MIRROR}${SPARK_APACHE_PATH} -O resourcemanager/sw/${SPARK_TARFILE}
 
