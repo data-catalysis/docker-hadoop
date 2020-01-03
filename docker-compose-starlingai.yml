@@ -4,12 +4,14 @@ services:
   namenode:
     image: bde2020/hadoop-namenode:3.2.1
     container_name: namenode
+    hostname: namenode
     ports:
       - 9870:9870
+      - 54310:54310
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
     environment:
-      - CLUSTER_NAME=test
+      - CLUSTER_NAME=starlingai
     env_file:
       - ./hadoop.env
 
@@ -24,6 +26,8 @@ services:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
+    extra_hosts:
+      - "namenode:172.31.2.42"
   
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:3.2.1

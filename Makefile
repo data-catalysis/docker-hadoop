@@ -20,3 +20,18 @@ wordcount:
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:${IMAGE_TAG} hdfs dfs -cat /output/*
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:${IMAGE_TAG} hdfs dfs -rm -r /output
 	docker run --network ${DOCKER_NETWORK} --env-file ${ENV_FILE} bde2020/hadoop-base:${IMAGE_TAG} hdfs dfs -rm -r /input
+
+start_local_cluster_1:
+	docker-compose -f docker-compose-local.yml up -d namenode
+	docker-compose -f docker-compose-local.yml up -d datanode
+	docker-compose -f docker-compose-local.yml up -d nodemanager
+	docker-compose -f docker-compose-local.yml up -d historyserver
+
+start_local_cluster_2:
+	docker-compose -f docker-compose-local.yml up -d resourcemanager
+
+stop_local_cluster:
+	docker-compose -f docker-compose-local.yml down
+
+show_local_cluster_logs:
+	docker-compose -f docker-compose-local.yml logs -f
