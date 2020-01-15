@@ -27,7 +27,7 @@ services:
     env_file:
       - ./hadoop.env
     extra_hosts:
-      - "namenode:172.20.0.2"
+      - "namenode:172.31.2.42"
   
   resourcemanager:
     image: bde2020/hadoop-resourcemanager:3.2.1
