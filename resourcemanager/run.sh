@@ -4,4 +4,4 @@
 
 . "/spark/bin/load-spark-env.sh"
 
-$HADOOP_PREFIX/bin/yarn --config $HADOOP_CONF_DIR resourcemanager
+$HADOOP_HOME/bin/yarn --config $HADOOP_CONF_DIR resourcemanager

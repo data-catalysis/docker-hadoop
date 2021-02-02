@@ -2,12 +2,13 @@ DOCKER_NETWORK = docker-hadoop_default
 ENV_FILE = hadoop.env
 current_branch := $(shell git rev-parse --abbrev-ref HEAD)
 IMAGE_TAG = 3.2.2
+ARCH_TYPE := $(shell uname -m)
 
 init:
 	sh get-sw.sh
-	
+
 build:
-	docker build -t bde2020/hadoop-base:${IMAGE_TAG} ./base
+	docker build -t bde2020/hadoop-base:${IMAGE_TAG} --build-arg ARCH=${ARCH_TYPE} ./base
 	docker build -t bde2020/hadoop-namenode:${IMAGE_TAG} ./namenode
 	docker build -t bde2020/hadoop-datanode:${IMAGE_TAG} ./datanode
 	docker build -t bde2020/hadoop-resourcemanager:${IMAGE_TAG} ./resourcemanager

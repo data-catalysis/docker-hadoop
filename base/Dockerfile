@@ -12,8 +12,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
       libsnappy-dev \
       python3 python3-pip \
     && rm -rf /var/lib/apt/lists/*
-      
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
+ARG ARCH=amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-$ARCH/
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
