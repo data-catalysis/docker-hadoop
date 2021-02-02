@@ -3,6 +3,9 @@ ENV_FILE = hadoop.env
 current_branch := $(shell git rev-parse --abbrev-ref HEAD)
 IMAGE_TAG = 3.2.2
 
+init:
+	sh get-sw.sh
+	
 build:
 	docker build -t bde2020/hadoop-base:${IMAGE_TAG} ./base
 	docker build -t bde2020/hadoop-namenode:${IMAGE_TAG} ./namenode
